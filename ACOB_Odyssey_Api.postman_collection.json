@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "cee5b522-bed0-4a72-b292-3051402cd0cf",
+		"name": "ACOB_Odyssey_Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20975362",
+		"_collection_link": "https://gold-meadow-135673.postman.co/workspace/Test~7590cde0-10c8-452a-975b-a682ad1085e3/collection/20975362-cee5b522-bed0-4a72-b292-3051402cd0cf?action=share&source=collection_link&creator=20975362"
+	},
+	"item": [
+		{
+			"name": "CreditData",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmMmJmOWUwZC1kYjM0LTQyNTItYTBmNi0xODRhMGRiOGFjNDYiLCJSb2xlSWQiOiJPZHlzc2V5IiwiVXNlcklkIjoiT2R5c3NleSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6WyJUb2tlblJlY29yZC5DcmVkaXRUb2tlblJlY29yZCIsIkF1dG9tYXRpY01ldGVyUmVhZGluZy5EYWlseURhdGFNZXRlciJdLCJuYmYiOjE3Njg1NDg1OTcsImV4cCI6MTkyNjMxNDk5NywiaXNzIjoiY2FsaW5tZXRlciIsImF1ZCI6ImNhbGlubWV0ZXIifQ.T1BrhFy95v9K8loWg04dSojDJb6GwjpVjZvtSN2LbWo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://8.208.16.168:9310/api/token/creditTokenRecord/readMore?FROM=2026-01-01T00:00:00.000Z&TO=2026-01-17T00:00:00.000Z&SITE_ID=KYAKALE",
+					"protocol": "http",
+					"host": [
+						"8",
+						"208",
+						"16",
+						"168"
+					],
+					"port": "9310",
+					"path": [
+						"api",
+						"token",
+						"creditTokenRecord",
+						"readMore"
+					],
+					"query": [
+						{
+							"key": "FROM",
+							"value": "2026-01-01T00:00:00.000Z"
+						},
+						{
+							"key": "TO",
+							"value": "2026-01-17T00:00:00.000Z"
+						},
+						{
+							"key": "SITE_ID",
+							"value": "KYAKALE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DataHourly",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1MDQ0MzIyNS04NmNmLTRjMzEtOTFjOC03M2I3ZTkyNDQ0ZTIiLCJSb2xlSWQiOiIwMDAxIiwiVXNlcklkIjoiMDAwMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6WyJUb2tlbiIsIlRva2VuLkNyZWRpdFRva2VuIiwiVG9rZW4uQ2xlYXJUYW1wZXJUb2tlbiIsIlRva2VuLkNsZWFyQ3JlZGl0VG9rZW4iLCJUb2tlbi5TZXRNYXhpbXVtUG93ZXJMaW1pdFRva2VuIiwiVG9rZW4uU2V0TWF4aW11bU92ZXJkcmFmdFRva2VuIiwiVG9rZW4uU2V0TWF4aW11bVBoYXNlUG93ZXJVbmJhbGFuY2VMaW1pdFRva2VuIiwiVG9rZW4uTWV0ZXJUZXN0VG9rZW4iLCJUb2tlbi5VcGRhdGVNZXRlcktleSIsIlRva2VuLkNoYW5nZU1ldGVyS2V5VG9rZW4iLCJUb2tlblJlY29yZCIsIlRva2VuUmVjb3JkLkNyZWRpdFRva2VuUmVjb3JkIiwiVG9rZW5SZWNvcmQuQ3JlZGl0VG9rZW5DYW5jZWxSZWNvcmQiLCJUb2tlblJlY29yZC5DYW5jZWxDcmVkaXRUb2tlblJlY29yZCIsIlRva2VuUmVjb3JkLkNsZWFyVGFtcGVyVG9rZW5SZWNvcmQiLCJUb2tlblJlY29yZC5DbGVhckNyZWRpdFRva2VuUmVjb3JkIiwiVG9rZW5SZWNvcmQuU2V0TWF4aW11bVBvd2VyTGltaXRUb2tlblJlY29yZCIsIlRva2VuUmVjb3JkLlNldE1heGltdW1PdmVyZHJhZnRUb2tlblJlY29yZCIsIlRva2VuUmVjb3JkLlNldE1heGltdW1QaGFzZVBvd2VyVW5iYWxhbmNlTGltaXRUb2tlblJlY29yZCIsIlRva2VuUmVjb3JkLkNoYW5nZU1ldGVyS2V5VG9rZW5SZWNvcmQiLCJSZW1vdGVNZXRlclRhc2siLCJSZW1vdGVNZXRlclRhc2suQ3JlYXRlUmVhZGluZ1Rhc2siLCJSZW1vdGVNZXRlclRhc2suQ3JlYXRlU2V0dGluZ1Rhc2siLCJSZW1vdGVNZXRlclRhc2suQ3JlYXRlQ29udHJvbFRhc2siLCJSZW1vdGVNZXRlclRhc2suQ3JlYXRlVG9rZW5UYXNrIiwiUmVtb3RlTWV0ZXJUYXNrLkNyZWF0ZVRyYW5zcGFyZW50Rm9yd2FyZGluZ1Rhc2siLCJSZW1vdGVNZXRlclRhc2suQ3JlYXRlVXBkYXRlRmlybXdhcmVUYXNrIiwiR1BSU01ldGVyVGFzayIsIkdQUlNNZXRlclRhc2suR1BSU0NyZWF0ZVJlYWRpbmdUYXNrIiwiR1BSU01ldGVyVGFzay5HUFJTQ3JlYXRlU2V0dGluZ1Rhc2siLCJHUFJTTWV0ZXJUYXNrLkdQUlNDcmVhdGVDb250cm9sVGFzayIsIkdQUlNNZXRlclRhc2suR1BSU0NyZWF0ZVRva2VuVGFzayIsIlJlbW90ZU1ldGVyVGFza1JlY29yZC5HZXRSZWFkaW5nVGFzayIsIlJlbW90ZU1ldGVyVGFza1JlY29yZC5VcGRhdGVSZWFkaW5nVGFzayIsIlJlbW90ZU1ldGVyVGFza1JlY29yZC5HZXRTZXR0aW5nVGFzayIsIlJlbW90ZU1ldGVyVGFza1JlY29yZC5VcGRhdGVTZXR0aW5nVGFzayIsIlJlbW90ZU1ldGVyVGFza1JlY29yZC5HZXRDb250cm9sVGFzayIsIlJlbW90ZU1ldGVyVGFza1JlY29yZC5VcGRhdGVDb250cm9sVGFzayIsIlJlbW90ZU1ldGVyVGFza1JlY29yZC5HZXRUb2tlblRhc2siLCJSZW1vdGVNZXRlclRhc2tSZWNvcmQuVXBkYXRlVG9rZW5UYXNrIiwiR1BSU01ldGVyVGFza1JlY29yZCIsIkdQUlNNZXRlclRhc2tSZWNvcmQuR1BSU0dldFJlYWRpbmdUYXNrIiwiR1BSU01ldGVyVGFza1JlY29yZC5HUFJTR2V0U2V0dGluZ1Rhc2siLCJHUFJTTWV0ZXJUYXNrUmVjb3JkLkdQUlNHZXRDb250cm9sVGFzayIsIkdQUlNNZXRlclRhc2tSZWNvcmQuR1BSU0dldFRva2VuVGFzayIsIlByZXBheVJlcG9ydCIsIlByZXBheVJlcG9ydC5Mb25nTm9ucHVyY2hhc2VTaXR1YXRpb24iLCJQcmVwYXlSZXBvcnQuTG93UHVyY2hhc2VTaXR1YXRpb24iLCJQcmVwYXlSZXBvcnQuQ29uc3VtcHRpb25TdGF0aXN0aWNzIiwiQXV0b21hdGljTWV0ZXJSZWFkaW5nLkRhaWx5RGF0YSIsIkF1dG9tYXRpY01ldGVyUmVhZGluZy5EYWlseURhdGFNZXRlciIsIkF1dG9tYXRpY01ldGVyUmVhZGluZy5Nb250aGx5RGF0YSIsIlJlbW90ZVJlcG9ydCIsIlJlbW90ZVJlcG9ydC5FbGVjdHJpY0VuZXJneUN1cnZlIiwiUmVtb3RlUmVwb3J0LkVsZWN0cmljRW5lcmd5Q3VydmVUaHJlZSIsIlJlbW90ZVJlcG9ydC5FbGVjdHJpY0VuZXJneUN1cnZlQ1QiLCJSZW1vdGVSZXBvcnQuSW5zdGFudGFuZW91c1ZhbHVlQ3VydmUiLCJSZW1vdGVSZXBvcnQuSW5zdGFudGFuZW91c1ZhbHVlQ3VydmVUaHJlZSIsIlJlbW90ZVJlcG9ydC5JbnN0YW50YW5lb3VzVmFsdWVDdXJ2ZUNUIiwiUmVtb3RlUmVwb3J0LkRhaWx5RGF0YSIsIlJlbW90ZVJlcG9ydC5EYWlseURhdGFUaHJlZSIsIlJlbW90ZVJlcG9ydC5EYWlseURhdGFDVCIsIlJlbW90ZVJlcG9ydC5Nb250aGx5RGF0YSIsIlJlbW90ZVJlcG9ydC5Nb250aGx5RGF0YVRocmVlIiwiUmVtb3RlUmVwb3J0Lk1vbnRobHlEYXRhQ1QiLCJSZW1vdGVSZXBvcnQuRXZlbnROb3RpZmljYXRpb24iLCJSZW1vdGVSZXBvcnQuR1BSU09ubGluZVN0YXR1cyIsIk1hbmFnZW1lbnQiLCJNYW5hZ2VtZW50LkdhdGV3YXkiLCJNYW5hZ2VtZW50Lk1ldGVyIiwiTWFuYWdlbWVudC5DdXN0b21lciIsIk1hbmFnZW1lbnQuVGFyaWZmIiwiTWFuYWdlbWVudC5EZWJ0IiwiTWFuYWdlbWVudC5BY2NvdW50IiwiU2V0dGluZyIsIlNldHRpbmcuU3RhdGlvbiIsIlNldHRpbmcuUm9sZSIsIlNldHRpbmcuVXNlciIsIlNldHRpbmcuTG9nIiwiU2V0dGluZy5JdGVtIiwiU2V0dGluZy5JbWFnZSJdLCJuYmYiOjE3NjIzMjg3NjAsImV4cCI6MTkyMDA5NTE2MCwiaXNzIjoiY2FsaW5tZXRlciIsImF1ZCI6ImNhbGlubWV0ZXIifQ.2snSKU8VRkoJ4GsmYXgZ-_VLRtISMOAq18oFkIZDNug",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://8.208.16.168:9310/api/DailyDataMeter/readHourly?offset=0&pageLimit=100&FROM=2026-01-10T00:00:00.000Z&TO=2026-01-17T00:00:00.000Z&SITE_ID=KYAKALE",
+					"protocol": "http",
+					"host": [
+						"8",
+						"208",
+						"16",
+						"168"
+					],
+					"port": "9310",
+					"path": [
+						"api",
+						"DailyDataMeter",
+						"readHourly"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "pageLimit",
+							"value": "100"
+						},
+						{
+							"key": "FROM",
+							"value": "2026-01-10T00:00:00.000Z"
+						},
+						{
+							"key": "TO",
+							"value": "2026-01-17T00:00:00.000Z"
+						},
+						{
+							"key": "SITE_ID",
+							"value": "KYAKALE"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

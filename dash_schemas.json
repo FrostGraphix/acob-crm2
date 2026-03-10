@@ -1,0 +1,9 @@
+{
+  "keys": [
+    "LineChartRequest",
+    "LineChartResponse",
+    "LineChartResponseResponseDto",
+    "PanelGroupResponse",
+    "PanelGroupResponseResponseDto"
+  ]
+}

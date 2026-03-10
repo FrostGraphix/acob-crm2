@@ -1,0 +1,49 @@
+{
+  "post": {
+    "tags": [
+      "PrepayReport"
+    ],
+    "operationId": "ConsumptionStatistics",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/ConsumptionStatisticsReadRequest"
+          }
+        },
+        "text/json": {
+          "schema": {
+            "$ref": "#/components/schemas/ConsumptionStatisticsReadRequest"
+          }
+        },
+        "application/*+json": {
+          "schema": {
+            "$ref": "#/components/schemas/ConsumptionStatisticsReadRequest"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "Success",
+        "content": {
+          "text/plain": {
+            "schema": {
+              "$ref": "#/components/schemas/ConsumptionStatisticsResponseResponseDto"
+            }
+          },
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ConsumptionStatisticsResponseResponseDto"
+            }
+          },
+          "text/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ConsumptionStatisticsResponseResponseDto"
+            }
+          }
+        }
+      }
+    }
+  }
+}

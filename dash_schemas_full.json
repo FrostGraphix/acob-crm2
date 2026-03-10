@@ -1,0 +1,45 @@
+{
+  "PanelGroupResponse": {
+    "type": "object",
+    "properties": {
+      "totalAccountCount": {
+        "type": "number",
+        "format": "double"
+      },
+      "totalPurchaseTimes": {
+        "type": "number",
+        "format": "double"
+      },
+      "totalPurchaseUnit": {
+        "type": "number",
+        "format": "double"
+      },
+      "totalPurchaseMoney": {
+        "type": "number",
+        "format": "double"
+      }
+    },
+    "additionalProperties": false
+  },
+  "LineChartResponse": {
+    "type": "object",
+    "properties": {
+      "xData": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "nullable": true
+      },
+      "yData": {
+        "type": "array",
+        "items": {
+          "type": "number",
+          "format": "double"
+        },
+        "nullable": true
+      }
+    },
+    "additionalProperties": false
+  }
+}

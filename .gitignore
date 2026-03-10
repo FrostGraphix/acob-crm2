@@ -1,0 +1,17 @@
+# Dependencies
+**/node_modules/
+
+# Build outputs
+**/dist/
+**/coverage/
+
+# Environment files
+**/.env
+**/.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Local tooling artifacts
+*.tsbuildinfo

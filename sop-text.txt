@@ -1,0 +1,652 @@
+﻿ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 1
+STANDARD OPERATING PROCEDURE
+ACOB ODYSSEY API
+Meter Management & Data Platform
+Host: 8.208.16.168:9310
+Document No. SOP-ACOB-001 Version 1.0
+Date February 2026 Classification Internal
+Prepared by: Lead Software Architect & Full-Stack Engineering Team
+
+-- 1 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 2
+1. PURPOSE & SCOPE
+This Standard Operating Procedure (SOP) defines the processes, workflows, and technical specifications for
+interacting with the ACOB Odyssey API ΓÇö a production-grade metering and token management platform. This
+document serves as the authoritative reference for development teams, operations staff, and system integrators.
+1.1 Purpose
+ΓÇó Define authentication protocols and JWT token management procedures
+ΓÇó Document all available API endpoints, their parameters, and expected responses
+ΓÇó Establish workflows for dashboard data, token operations, remote meter control, and reporting
+ΓÇó Provide integration patterns for frontend dashboards and backend services
+ΓÇó Specify error handling, retry logic, and monitoring procedures
+1.2 Scope
+ΓÇó API Base URL: http://8.208.16.168:9310
+ΓÇó Platform: ACOB Odyssey Metering System
+ΓÇó Applicable Modules: Dashboard, Token Management, Remote Operations, Data Reports, and Management
+ΓÇó Audience: Software architects, backend engineers, frontend developers, DevOps, and system administrators
+ΓÇó Sites Covered: KYAKALE, MUSHA, UMAISHA, TUNGA, OGUFA
+1.3 Registered Site Inventory
+The following five operational sites are managed through this API. Every endpoint that accepts a SITE_ID parameter
+must use one of these registered identifiers. Multi-site queries require separate API calls per site; aggregate results in
+your backend service layer.
+Site ID Site Name Description
+KYAKALE Kyakale Token, meter reading, remote control, and reporting operations
+MUSHA Musha Token, meter reading, remote control, and reporting operations
+UMAISHA Umaisha Token, meter reading, remote control, and reporting operations
+TUNGA Tunga Token, meter reading, remote control, and reporting operations
+OGUFA Ogufa Token, meter reading, remote control, and reporting operations
+1.4 API Architecture Overview
+The Odyssey API is a RESTful HTTP service secured with JWT Bearer token authentication. All data is exchanged in
+JSON format. The API supports date-range filtering using ISO 8601 timestamps and site-based data segmentation
+via SITE_ID parameters.
+
+-- 2 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 3
+BASE URL
+http://8.208.16.168:9310/api
+AUTHENTICATION
+All endpoints require a Bearer JWT token in the Authorization header. Tokens contain role-based claims
+governing access to specific modules.
+
+-- 3 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 4
+2. AUTHENTICATION & TOKEN MANAGEMENT
+2.1 JWT Bearer Token
+The Odyssey API uses JSON Web Tokens (JWT) signed with HS256. Every API request must include a valid Bearer
+token in the Authorization header. Tokens contain role-based claims that control which endpoints can be accessed.
+2.1.1 Request Header Format
+Authorization: Bearer <JWT_TOKEN>
+Content-Type: application/json
+2.1.2 Token Claims
+Claim Example Value Description
+jti f2bf9e0d-db34-... Unique token identifier (JWT ID)
+RoleId Odyssey / 0001 Role identifier governing access scope
+UserId Odyssey / 0001 User identifier for audit logging
+nbf Unix timestamp Token valid-not-before time
+exp Unix timestamp Token expiration ΓÇö validate before every call
+iss calinmeter Token issuer ΓÇö must be calinmeter
+aud calinmeter Token audience ΓÇö must be calinmeter
+2.1.3 Role-Based Permission Scopes
+Scope / Claim Module Access Granted
+TokenRecord.CreditTokenRecord Read credit token purchase records
+AutomaticMeterReading.DailyDataMeter Read hourly & daily meter readings
+AutomaticMeterReading.DailyData Daily AMR data access
+AutomaticMeterReading.MonthlyData Monthly AMR data access
+Token.CreditToken Generate credit (prepayment) tokens
+Token.ClearTamperToken Generate clear tamper tokens
+Token.ClearCreditToken Generate clear credit tokens
+Token.SetMaximumPowerLimitToken Generate max power limit tokens
+
+-- 4 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 5
+Scope / Claim Module Access Granted
+Token.SetMaximumOverdraftToken Generate max overdraft tokens
+RemoteMeterTask.CreateReadingTask Create remote meter reading tasks
+RemoteMeterTask.CreateSettingTask Create remote meter setting tasks
+RemoteMeterTask.CreateControlTask Create remote meter control tasks
+RemoteMeterTask.CreateTokenTask Create remote token delivery tasks
+PrepayReport.LongNonpurchaseSituation Long non-purchase report
+PrepayReport.LowPurchaseSituation Low purchase situation report
+PrepayReport.ConsumptionStatistics Consumption statistics report
+RemoteReport.ElectricEnergyCurve Energy curve data
+RemoteReport.DailyData Remote daily data reports
+RemoteReport.MonthlyData Remote monthly data reports
+RemoteReport.EventNotification Event notification logs
+RemoteReport.GPRSOnlineStatus GPRS gateway online status
+RemoteReport.InstantaneousValueCurve Real-time instantaneous readings
+Management.Gateway Gateway management CRUD
+Management.Customer Customer management CRUD
+Management.Tariff Tariff management CRUD
+Management.Account Account management CRUD
+Setting.Station / Role / User System settings management
+2.2 Security Best Practices
+1. NEVER hardcode JWT tokens in source code. Store in environment variables or a secrets manager (AWS
+Secrets Manager, HashiCorp Vault).
+2. Validate token expiration (exp claim) before every API call. Refresh proactively 60 seconds before expiry.
+3. Use HTTPS/TLS in production. The current HTTP configuration is NOT suitable for production.
+4. Implement token rotation ΓÇö short-lived access tokens (15-60 min) with refresh tokens.
+5. Log all token usage with user ID, timestamp, endpoint, and IP for audit trail compliance.
+6. Implement rate limiting on your integration layer to prevent API abuse.
+2.2.1 Environment Variable Configuration
+# .env (NEVER commit to version control)
+ODYSSEY_API_BASE_URL=http://8.208.16.168:9310/api
+
+-- 5 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 6
+ODYSSEY_JWT_TOKEN=<your-jwt-token>
+ODYSSEY_SITE_IDS=KYAKALE,MUSHA,UMAISHA,TUNGA,OGUFA
+ODYSSEY_TOKEN_EXPIRY_BUFFER_SECONDS=60
+
+-- 6 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 7
+3. DASHBOARD ΓÇö SOP & API PROCEDURES
+The Dashboard module aggregates key performance indicators across meter data, token activity, and system health.
+3.1 Dashboard KPI Data Sources
+Dashboard Widget API Endpoint Key Parameters Refresh
+Credit Token Summary GET /token/creditTokenRecord/readMore FROM, TO, SITE_ID On-demand
+Hourly Consumption GET /DailyDataMeter/readHourly FROM, TO, SITE_ID, offset, pageLimit	Hourly
+Daily Meter Yield GET /DailyDataMeter (daily) FROM, TO, SITE_ID Daily
+Monthly Statistics GET /AutomaticMeterReading/monthly Month, SITE_ID Monthly
+Event Notifications GET /RemoteReport/eventNotification FROM, TO, SITE_ID Real-time
+GPRS System Status GET /RemoteReport/GPRSOnlineStatus SITE_ID 5 min
+Instantaneous Values GET /RemoteReport/instantaneousValue SITE_ID On-demand
+3.2 Multi-Site Dashboard Strategy
+The dashboard must aggregate data across all five sites: KYAKALE, MUSHA, UMAISHA, TUNGA, and OGUFA.
+Because SITE_ID is a required parameter on every endpoint, multi-site data requires parallel API calls ΓÇö one per site
+ΓÇö aggregated server-side before rendering.
+Site Site ID Separate API Call Required? Aggregate In
+Kyakale KYAKALE Yes ΓÇö one call per endpoint Backend aggregation layer
+Musha MUSHA Yes ΓÇö one call per endpoint Backend aggregation layer
+Umaisha UMAISHA Yes ΓÇö one call per endpoint Backend aggregation layer
+Tunga TUNGA Yes ΓÇö one call per endpoint Backend aggregation layer
+Ogufa OGUFA Yes ΓÇö one call per endpoint Backend aggregation layer
+// Multi-site parallel fetch pattern (TypeScript)
+const SITES = ['KYAKALE', 'MUSHA', 'UMAISHA', 'TUNGA', 'OGUFA'];
+const results = await Promise.all(
+SITES.map(site =\> odysseyClient.getCreditTokenRecords({ from, to, siteId: site }))
+);
+const aggregated = results.flatMap(r =\> r.data); // merge all 5 sites
+3.3 SOP: Dashboard Data Pipeline
+
+-- 7 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 8
+1. Authenticate and retrieve a valid JWT token. Verify exp claim is not within 60 seconds of expiry.
+2. Set date range parameters in UTC ISO 8601 format: 2026-01-01T00:00:00.000Z
+3. Call credit token endpoint to populate token purchase summary and revenue KPIs.
+4. Call hourly data endpoint with pagination (offset=0, pageLimit=100) to retrieve consumption curves.
+5. Aggregate hourly data to compute daily totals and 7-day rolling averages.
+6. Call event notification endpoint to populate alert widgets.
+7. Display GPRS online status to show gateway/meter connectivity health.
+8. Cache responses with TTL matching refresh rate. Use Redis for high-frequency widgets.
+3.4 Credit Token Endpoint Detail
+GET /api/token/creditTokenRecord/readMore
+Parameter Type Required Example Description
+FROM datetime Yes 2026-01-01T00:00:00.000Z Start of date range (UTC)
+TO datetime Yes 2026-01-17T00:00:00.000Z End of date range (UTC)
+SITE_ID string Yes KYAKALE | MUSHA | UMAISHA | TUNGA | OGUFA	One of the 5 registered site identifiers
+GET http://8.208.16.168:9310/api/token/creditTokenRecord/readMore
+?FROM=2026-01-01T00:00:00.000Z&TO;=2026-01-17T00:00:00.000Z&SITE;_ID={SITE_ID}
+Authorization: Bearer <JWT_TOKEN>
+3.5 Hourly Data Endpoint Detail
+GET /api/DailyDataMeter/readHourly
+Parameter Type Required Example Description
+FROM datetime Yes 2026-01-10T00:00:00.000Z Start of date range (UTC)
+TO datetime Yes 2026-01-17T00:00:00.000Z End of date range (UTC)
+SITE_ID string Yes KYAKALE | MUSHA | ... One of the 5 registered site identifiers
+offset integer Yes 0 Pagination offset (0-based)
+pageLimit integer Yes 100 Records per page (max 100)
+Pagination Strategy
+1. Start with offset=0, pageLimit=100.
+2. If response returns exactly pageLimit records, increment offset by pageLimit and repeat.
+3. Continue until response count is less than pageLimit (last page reached).
+4. Aggregate all pages before rendering charts.
+
+-- 8 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 9
+4. TOKEN MANAGEMENT ΓÇö SOP & API PROCEDURES
+The Odyssey platform uses a Standard Transfer Specification (STS)-compatible token system. This section covers all
+token types, generation procedures, and record retrieval.
+4.1 Token Types Overview
+Token Type Method Endpoint Suffix Required Scope
+Credit Token POST /token/creditToken Token.CreditToken
+Clear Tamper Token POST /token/clearTamperToken Token.ClearTamperToken
+Clear Credit Token POST /token/clearCreditToken Token.ClearCreditToken
+Set Max Power Limit POST /token/setMaximumPowerLimitToken Token.SetMaximumPowerLimitToken
+Set Max Overdraft POST /token/setMaximumOverdraftToken Token.SetMaximumOverdraftToken
+Meter Test Token POST /token/meterTestToken Token.MeterTestToken
+Change Meter Key POST /token/changeMeterKeyToken Token.ChangeMeterKeyToken
+4.2 SOP: Credit Token Generation
+Credit tokens are 20-digit STS codes dispensed to prepayment meters when a customer purchases electricity. Follow
+this procedure for every credit token request.
+1. Validate customer account status via Management.Customer endpoint before generating token.
+2. Verify meter serial number is registered and active on the SITE_ID.
+3. Calculate credit amount based on current tariff (retrieve from Management.Tariff endpoint).
+4. POST to /api/token/creditToken with required payload fields.
+5. Store generated token in TokenRecord immediately for audit and reversal capability.
+6. Return 20-digit token to vending system / customer interface.
+7. Log transaction with timestamp, amount, meter serial, and operator ID.
+Credit Token Request Payload
+{ "MeterSN": "METER_SERIAL_NUMBER",
+"Amount": 5000,
+"TariffRate": 25.0,
+"SITE_ID": "{SITE_ID}",
+"OperatorId": "USER_001" }
+4.3 Token Record Endpoints
+
+-- 9 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 10
+Record Type Endpoint Scope
+Credit Token Records GET /api/token/creditTokenRecord/readMore TokenRecord.CreditTokenRecord
+Clear Tamper Records GET /api/token/clearTamperTokenRecord/readMore TokenRecord.ClearTamperTokenRecord
+Clear Credit Records GET /api/token/clearCreditTokenRecord/readMore TokenRecord.ClearCreditTokenRecord
+Max Power Records GET /api/token/setMaximumPowerLimitTokenRecord/readMoreTokenRecord.SetMaximumPowerLimitTokenRecord
+Cancel Records GET /api/token/creditTokenCancelRecord/readMore TokenRecord.CreditTokenCancelRecord
+4.4 Per-Site Token Generation Reference
+All five sites use the same token endpoints. Always include the correct SITE_ID for the target site. Token records are
+partitioned by site ΓÇö a token issued under KYAKALE will not appear in MUSHA records.
+Site SITE_ID Token Endpoint Record Endpoint
+Kyakale KYAKALE POST /api/token/creditToken GET /api/token/creditTokenRecord/readMore
+Musha MUSHA POST /api/token/creditToken GET /api/token/creditTokenRecord/readMore
+Umaisha UMAISHA POST /api/token/creditToken GET /api/token/creditTokenRecord/readMore
+Tunga TUNGA POST /api/token/creditToken GET /api/token/creditTokenRecord/readMore
+Ogufa OGUFA POST /api/token/creditToken GET /api/token/creditTokenRecord/readMore
+NOTE
+SITE_ID partitions data at the platform level. A meter registered under MUSHA will not return data when queried
+with SITE_ID=KYAKALE. Verify meter-to-site assignment in the Management module before generating tokens
+or pulling reports.
+4.5 SOP: Token Cancellation / Reversal
+1. Identify the token via the TokenRecord.CreditTokenRecord endpoint using date range and meter serial.
+2. Verify the token has NOT been entered into the meter (check meter status via Remote Reading task).
+3. POST cancellation request to the cancel endpoint with the original token reference.
+4. Update TokenRecord with cancellation status, operator ID, and timestamp.
+5. Issue reversal credit or customer notification as per business process.
+
+-- 10 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 11
+5. REMOTE OPERATIONS ΓÇö SOP & API PROCEDURES
+Remote operations enable server-initiated communication with meters through the GPRS/network gateway. All
+operations are implemented as asynchronous tasks with status tracking.
+IMPORTANT: Asynchronous Execution
+Remote tasks do not execute synchronously. After creating a task, poll the task record endpoint until status
+changes from PENDING to SUCCESS or FAILED. Typical response times range from 30 seconds to several
+minutes depending on GPRS connectivity.
+5.1 Meter Reading Operations
+5.1.1 Create Meter Reading Task
+POST /api/RemoteMeterTask/createReadingTask
+{ "MeterSN": "METER_SERIAL", "ReadingType": "INSTANT", "SITE_ID": "{SITE_ID}" }
+5.1.2 Retrieve Reading Task Result
+GET /api/RemoteMeterTaskRecord/getReadingTask?TaskId=<TASK_ID>&SITE;_ID={SITE_ID}
+5.1.3 Reading Task Polling SOP
+1. POST create reading task. Store the returned TaskId.
+2. Wait 30 seconds before first poll.
+3. GET task record. Check status: PENDING / SUCCESS / FAILED / TIMEOUT.
+4. If PENDING, wait 30 seconds and retry. Maximum 10 retries (5 minutes total).
+5. If SUCCESS, extract meter reading data from response payload.
+6. If FAILED or TIMEOUT, log error and trigger operator alert for manual investigation.
+5.2 Meter Control Operations
+Meter control tasks allow remote connect/disconnect and relay control of meters. These operations require strict
+authorization and audit procedures.
+Create Control Task
+POST /api/RemoteMeterTask/createControlTask
+{ "MeterSN": "METER_SERIAL", "ControlType": "DISCONNECT",
+"Reason": "Non-payment", "AuthorizedBy": "OPERATOR_ID", "SITE_ID": "{SITE_ID}" }
+MANDATORY: Dual Authorization for Disconnect
+
+-- 11 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 12
+Remote disconnect operations MUST be authorized by two operators (four-eyes principle). Log both operator
+IDs, timestamps, and the business reason before submitting the control task. Never automate disconnections
+without human approval.
+5.3 Remote Token Delivery
+Tokens can be delivered remotely to meters via GPRS without the customer entering a 20-digit code ΓÇö used for bulk
+credit operations, emergency reconnects, and automated top-ups.
+POST /api/RemoteMeterTask/createTokenTask
+{ "MeterSN": "METER_SERIAL", "TokenValue": "12345678901234567890", "SITE_ID": "{SITE_ID}" }
+5.4 GPRS Task Variants
+GPRS Task Type Endpoint Scope Required
+GPRS Reading Task POST /api/GPRSMeterTask/GPRSCreateReadingTask GPRSMeterTask.GPRSCreateReadingTask
+GPRS Setting Task POST /api/GPRSMeterTask/GPRSCreateSettingTask GPRSMeterTask.GPRSCreateSettingTask
+GPRS Control Task POST /api/GPRSMeterTask/GPRSCreateControlTask GPRSMeterTask.GPRSCreateControlTask
+GPRS Token Task POST /api/GPRSMeterTask/GPRSCreateTokenTask GPRSMeterTask.GPRSCreateTokenTask
+Get GPRS Reading GET /api/GPRSMeterTaskRecord/GPRSGetReadingTaskGPRSMeterTaskRecord
+Get GPRS Setting GET /api/GPRSMeterTaskRecord/GPRSGetSettingTask GPRSMeterTaskRecord
+Get GPRS Control GET /api/GPRSMeterTaskRecord/GPRSGetControlTaskGPRSMeterTaskRecord
+Get GPRS Token GET /api/GPRSMeterTaskRecord/GPRSGetTokenTask GPRSMeterTaskRecord
+
+-- 12 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 13
+6. DATA REPORTS ΓÇö SOP & API PROCEDURES
+The Data Report module provides comprehensive energy data, consumption analytics, and system event logs for
+operational monitoring and business intelligence.
+6.1 Prepayment Reports
+6.1.1 Long Non-Purchase Situation
+Identifies meters that have not received credit purchases within a configurable threshold period. Used for proactive
+customer outreach and debt management.
+GET /api/PrepayReport/longNonpurchaseSituation?DayThreshold=30&SITE;_ID={SITE_ID}&offset;=0&pageL
+imit;=100
+SOP
+Run this report weekly. Export results to CSV. Customer service team to contact customers with 30+ days
+non-purchase. Flag accounts at 60+ days for disconnection review.
+6.1.2 Low Purchase Situation
+GET /api/PrepayReport/lowPurchaseSituation?AmountThreshold=500&SITE;_ID={SITE_ID}&offset;=0&pageL
+imit;=100
+6.1.3 Consumption Statistics
+GET /api/PrepayReport/consumptionStatistics?FROM=2026-01-01T00:00:00.000Z&TO;=2026-01-31T00:00:00
+.000Z&SITE;_ID={SITE_ID}
+6.2 Interval (Hourly) Data
+Provides sub-daily energy readings essential for load profiling, peak demand analysis, and Time-of-Use (TOU) tariff
+verification. Feed into time-series databases (InfluxDB, TimescaleDB) for archiving.
+GET /api/DailyDataMeter/readHourly?FROM=...&TO;=...&SITE;_ID={SITE_ID}&offset;=0&pageLimit;=100
+6.3 Energy Curve Reports
+Report Type Endpoint
+Single-Phase Energy Curve GET /api/RemoteReport/electricEnergyCurve
+Three-Phase Energy Curve GET /api/RemoteReport/electricEnergyCurveThree
+CT Metering Energy Curve GET /api/RemoteReport/electricEnergyCurveCT
+Single-Phase Instantaneous GET /api/RemoteReport/instantaneousValueCurve
+
+-- 13 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 14
+Report Type Endpoint
+Three-Phase Instantaneous GET /api/RemoteReport/instantaneousValueCurveThree
+CT Instantaneous GET /api/RemoteReport/instantaneousValueCurveCT
+6.4 Daily & Monthly Yield Reports
+Report Type Endpoint Description
+Daily Data (Single Phase) GET /api/RemoteReport/dailyData Daily energy totals, single-phase
+Daily Data (Three Phase) GET /api/RemoteReport/dailyDataThree Daily energy totals, three-phase
+Daily Data (CT) GET /api/RemoteReport/dailyDataCT Daily energy totals, CT-metered
+Monthly Data (Single Phase) GET /api/RemoteReport/monthlyData Monthly aggregated energy
+Monthly Data (Three Phase) GET /api/RemoteReport/monthlyDataThree Monthly data, three-phase
+Monthly Data (CT) GET /api/RemoteReport/monthlyDataCT Monthly data, CT-metered
+SOP
+Schedule automated monthly report generation on the 1st of each month. Archive monthly yield data to
+persistent storage. Use for billing verification, loss calculations, and regulatory reporting.
+6.5 Event Notifications
+Event notifications capture meter-level alarms and system events including tampering, power outages, cover opens,
+and communication failures.
+GET
+/api/RemoteReport/eventNotification?FROM=...&TO;=...&SITE;_ID={SITE_ID}&offset;=0&pageLimit;=100
+Common event types to monitor: TAMPER_DETECTED, COVER_OPEN, POWER_FAIL, POWER_RESTORE,
+LOW_CREDIT, REVERSE_ENERGY, OVER_CURRENT, COMMUNICATION_FAIL.
+6.6 GPRS Online Status
+GET /api/RemoteReport/GPRSOnlineStatus?SITE_ID={SITE_ID}
+SOP
+Poll every 5 minutes. Alert operations team if any gateway drops offline. Maintain 30-day connectivity history for
+SLA reporting.
+
+-- 14 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 15
+7. MANAGEMENT MODULE ΓÇö SOP & API PROCEDURES
+7.1 Gateway Management
+GET /api/Management/gateway // List all gateways
+POST /api/Management/gateway // Register new gateway
+PUT /api/Management/gateway/{id} // Update gateway configuration
+DELETE /api/Management/gateway/{id} // Decommission gateway
+SOP: Document all gateway registrations with site location, IP address, communication protocol (GPRS/Ethernet),
+and installation date. Assign each gateway a unique reference linked to the relevant SITE_ID.
+7.2 Customer Management
+GET /api/Management/customer // List customers (filterable by SITE_ID)
+POST /api/Management/customer // Register new customer
+PUT /api/Management/customer/{id} // Update customer information
+Customer records link meter serial numbers to accounts, enabling token generation, billing, and reporting to be
+correctly attributed. Always validate MeterSN against the meter registry before associating.
+7.3 Tariff Management
+GET /api/Management/tariff // List all tariffs
+POST /api/Management/tariff // Create new tariff
+PUT /api/Management/tariff/{id} // Update tariff rates
+SOP: Tariff changes require supervisor approval and must be logged with effective date. After updating, verify the
+new rate is reflected in the next token generation cycle. Maintain historical tariff records for retrospective billing audits.
+7.4 Account Management
+GET /api/Management/account // List accounts
+POST /api/Management/account // Create API user or operator account
+PUT /api/Management/account/{id} // Update account permissions
+Apply least-privilege principle ΓÇö only assign role claims strictly required for each integration. Review accounts
+quarterly and revoke unused credentials immediately.
+
+-- 15 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 16
+8. ERROR HANDLING & RESPONSE CODES
+HTTP Status Meaning Action Required
+200 OK Request successful Parse response body and process data
+400 Bad Request Invalid parameters or malformed request Validate all parameters before retrying
+401 Unauthorized JWT token missing, expired, or invalid Refresh JWT token and retry
+403 Forbidden Valid token but insufficient scope Request token with required scope. Contact admin
+404 Not Found Endpoint or resource does not exist Verify endpoint path and resource identifiers
+429 Too Many RequestsRate limit exceeded Implement exponential backoff. Wait 60s then retry
+500 Internal Server ErrorServer-side error Log request/response. Retry after 30s. Escalate if persistent
+503 Service UnavailableServer temporarily down Retry with exponential backoff. Alert operations team
+8.1 Exponential Backoff Implementation
+async function apiCallWithRetry(endpoint, options, maxRetries = 3) {
+for (let attempt = 1; attempt <= maxRetries; attempt++) {
+try {
+const response = await fetch(endpoint, options);
+if (response.ok) return response.json();
+if (response.status === 401) { await refreshToken(); continue; }
+if (response.status < 500) throw new Error(`Client error: ${response.status}`);
+} catch (err) {
+const delay = Math.pow(2, attempt) * 1000; // 2s, 4s, 8s
+if (attempt === maxRetries) throw err;
+await new Promise(r => setTimeout(r, delay));
+}
+}
+}
+
+-- 16 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 17
+9. INTEGRATION ARCHITECTURE & IMPLEMENTATION
+9.1 Recommended Tech Stack
+Layer Technology Responsibility
+API Gateway Kong / AWS API Gateway Rate limiting, auth validation, request logging
+Backend Service Node.js + TypeScript / FastAPI Business logic, token generation, data aggregation
+Cache Layer Redis API response caching, session tokens, rate limit counters
+Database PostgreSQL Token records, customer data, audit logs
+Time-Series DB InfluxDB / TimescaleDB Hourly interval data, instantaneous value curves
+Message Queue RabbitMQ / AWS SQS Async remote task orchestration and status tracking
+Frontend Dashboard React + TypeScript + Recharts Dashboard UI, charts, token management interface
+Secrets Management AWS Secrets Manager / Vault JWT tokens, API credentials, encryption keys
+Monitoring Prometheus + Grafana API health, response times, error rates, meter uptime
+CI/CD GitHub Actions + Docker Automated testing, containerized deployment
+9.2 Project Directory Structure
+/backend/src/
+api/tokens/ # Token generation & record endpoints
+api/meters/ # Remote task & reading endpoints
+api/reports/ # Data report endpoints
+api/management/ # CRUD management endpoints
+services/ # Business logic services
+odyssey-client.ts # Odyssey API HTTP client wrapper
+token-service.ts # Token generation orchestration
+meter-service.ts # Remote operations logic
+middleware/auth.ts # JWT validation middleware
+/frontend/src/
+components/Dashboard/ # Dashboard widget components
+components/Tokens/ # Token management interface
+components/Reports/ # Report views and charts
+/common/types/ # Shared TypeScript models
+/tests/ # Jest unit & integration tests
+/.github/workflows/ # CI/CD pipeline definitions
+9.3 Core TypeScript Type Definitions
+
+-- 17 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 18
+// /common/types/odyssey.ts
+export interface CreditTokenRecord {
+id: string; meterSN: string; tokenValue: string; // 20-digit STS
+amount: number; energyUnits: number; timestamp: string;
+customerId: string; siteId: string; operatorId: string;
+}
+export interface HourlyMeterData {
+meterSN: string; timestamp: string;
+activeEnergyImport: number; activeEnergyExport: number;
+reactiveEnergyImport: number; reactiveEnergyExport: number;
+siteId: string;
+}
+export interface RemoteTask {
+taskId: string; meterSN: string;
+taskType: 'READING' | 'CONTROL' | 'TOKEN' | 'SETTING';
+status: 'PENDING' | 'SUCCESS' | 'FAILED' | 'TIMEOUT';
+createdAt: string; completedAt?: string;
+result?: Record<string, unknown>;
+}
+
+-- 18 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 19
+10. METER STATISTICS & KPI CALCULATIONS
+10.1 Energy Consumption KPIs
+KPI Formula / Source API Data Source
+Daily Consumption (kWh) Sum hourly activeEnergyImport per day DailyDataMeter/readHourly
+7-Day Rolling Average Sum last 7 days / 7 DailyDataMeter/readHourly
+Monthly Total (kWh) Sum of daily totals in month RemoteReport/monthlyData
+Peak Hour Demand Max hourly value in daily profile DailyDataMeter/readHourly
+Load Factor Average demand / Peak demand x 100% DailyDataMeter/readHourly
+Site Aggregate Consumption Sum all meter readings per period PrepayReport/consumptionStatistics
+Technical Loss Estimate Site supply total - Sum of customer meters RemoteReport + PrepayReport
+Non-Technical Loss (NTL) Billed energy - Metered energy (flagged) EventNotification + MonthlyData
+10.2 Revenue & Token KPIs
+KPI Formula / Source API Data Source
+Revenue Collected Sum of token amounts in date range token/creditTokenRecord/readMore
+Average Purchase Value Total revenue / Count of purchases token/creditTokenRecord/readMore
+Purchase Frequency Count of purchases / Active meters token/creditTokenRecord/readMore
+Long Non-Purchase Count Meters with 30+ days no purchase PrepayReport/longNonpurchaseSituation
+Low Credit Alert Count Meters below minimum threshold PrepayReport/lowPurchaseSituation
+Token Reversal Rate Cancelled tokens / Total tokens issued TokenRecord.CreditTokenCancelRecord
+10.3 Multi-Site Aggregate KPI Targets
+The following table defines the expected KPI monitoring scope across all five sites. Each KPI must be computed
+independently per site and then aggregated for the portfolio-level dashboard view.
+KPI KYAKALE MUSHA UMAISHA TUNGA OGUFA
+Credit Token Records Yes Yes Yes Yes Yes
+Hourly Meter Data Yes Yes Yes Yes Yes
+
+-- 19 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 20
+KPI KYAKALE MUSHA UMAISHA TUNGA OGUFA
+Monthly Yield Reports Yes Yes Yes Yes Yes
+Event Notifications Yes Yes Yes Yes Yes
+GPRS Online Status Yes Yes Yes Yes Yes
+Non-purchase Report Yes Yes Yes Yes Yes
+Consumption Statistics Yes Yes Yes Yes Yes
+Remote Task Operations Yes Yes Yes Yes Yes
+10.4 Network & System KPIs
+KPI Formula / Source API Data Source
+Gateway Uptime (%) Online time / Total time x 100 RemoteReport/GPRSOnlineStatus
+Meter Communication Rate Meters reporting / Total meters x 100 RemoteReport/GPRSOnlineStatus
+Tamper Event Count Count of TAMPER events in period RemoteReport/eventNotification
+Remote Task Success Rate Successful tasks / Total tasks x 100 RemoteMeterTaskRecord
+Avg Task Response Time Sum task durations / Count tasks RemoteMeterTaskRecord
+
+-- 20 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 21
+11. SECURITY & COMPLIANCE
+11.1 Production Security Checklist
+1. Migrate API base URL from HTTP to HTTPS. Implement TLS 1.2+ with valid certificate.
+2. Store all JWT tokens in a secrets manager ΓÇö never in .env files committed to git.
+3. Implement API Gateway with JWT validation as the first layer of defense.
+4. Enable API request logging with correlation IDs for complete audit trail.
+5. Implement rate limiting: 100 requests/minute per token; burst limit 20/second.
+6. Restrict JWT token scopes to minimum required per integration (least privilege).
+7. Rotate JWT tokens every 30 days. Immediately revoke tokens for departed staff.
+8. Encrypt all sensitive data at rest using AES-256 (token values, customer data).
+9. Conduct quarterly security review of API access logs and token usage patterns.
+10. Implement IP allowlisting for production API access where possible.
+11.2 Audit & Compliance Requirements
+ΓÇó All token generation events must be logged with: timestamp, operator ID, meter SN, amount, and token hash.
+ΓÇó Remote disconnect events require dual authorization records before execution.
+ΓÇó Tariff changes must be logged with effective date, previous rate, new rate, and authorizing supervisor.
+ΓÇó Customer data must be handled in accordance with applicable data protection regulations.
+ΓÇó Retain API audit logs for minimum 7 years for regulatory compliance.
+
+-- 21 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 22
+12. COMPLETE ENDPOINT REFERENCE
+Category Method Endpoint Path Required Scope
+Token Gen POST /api/token/creditToken Token.CreditToken
+Token Gen POST /api/token/clearTamperToken Token.ClearTamperToken
+Token Gen POST /api/token/clearCreditToken Token.ClearCreditToken
+Token Gen POST /api/token/setMaximumPowerLimitToken Token.SetMaximumPowerLimitToken
+Token Gen POST /api/token/setMaximumOverdraftToken Token.SetMaximumOverdraftToken
+Token Records GET /api/token/creditTokenRecord/readMore TokenRecord.CreditTokenRecord
+Token Records GET /api/token/clearTamperTokenRecord/readMore TokenRecord.ClearTamperTokenRecord
+Token Records GET /api/token/clearCreditTokenRecord/readMore TokenRecord.ClearCreditTokenRecord
+Token Records GET /api/token/setMaximumPowerLimitTokenRecord/readMore TokenRecord.SetMaxPowerLimitRecord
+AMR Data GET /api/DailyDataMeter/readHourly AutomaticMeterReading.DailyDataMeter
+AMR Data GET /api/AutomaticMeterReading/daily AutomaticMeterReading.DailyData
+AMR Data GET /api/AutomaticMeterReading/monthly AutomaticMeterReading.MonthlyData
+Remote Task POST /api/RemoteMeterTask/createReadingTask RemoteMeterTask.CreateReadingTask
+Remote Task POST /api/RemoteMeterTask/createSettingTask RemoteMeterTask.CreateSettingTask
+Remote Task POST /api/RemoteMeterTask/createControlTask RemoteMeterTask.CreateControlTask
+Remote Task POST /api/RemoteMeterTask/createTokenTask RemoteMeterTask.CreateTokenTask
+Task Records GET /api/RemoteMeterTaskRecord/getReadingTask RemoteMeterTaskRecord.GetReadingTask
+Task Records GET /api/RemoteMeterTaskRecord/getSettingTask RemoteMeterTaskRecord.GetSettingTask
+Task Records GET /api/RemoteMeterTaskRecord/getControlTask RemoteMeterTaskRecord.GetControlTask
+Task Records GET /api/RemoteMeterTaskRecord/getTokenTask RemoteMeterTaskRecord.GetTokenTask
+GPRS Task POST /api/GPRSMeterTask/GPRSCreateReadingTask GPRSMeterTask.GPRSCreateReadingTask
+GPRS Task POST /api/GPRSMeterTask/GPRSCreateSettingTask GPRSMeterTask.GPRSCreateSettingTask
+GPRS Task POST /api/GPRSMeterTask/GPRSCreateControlTask GPRSMeterTask.GPRSCreateControlTask
+GPRS Task POST /api/GPRSMeterTask/GPRSCreateTokenTask GPRSMeterTask.GPRSCreateTokenTask
+GPRS Records GET /api/GPRSMeterTaskRecord/GPRSGetReadingTask GPRSMeterTaskRecord
+
+-- 22 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 23
+Category Method Endpoint Path Required Scope
+GPRS Records GET /api/GPRSMeterTaskRecord/GPRSGetSettingTask GPRSMeterTaskRecord
+GPRS Records GET /api/GPRSMeterTaskRecord/GPRSGetControlTask GPRSMeterTaskRecord
+GPRS Records GET /api/GPRSMeterTaskRecord/GPRSGetTokenTask GPRSMeterTaskRecord
+PrepayReport GET /api/PrepayReport/longNonpurchaseSituation PrepayReport.LongNonpurchase
+PrepayReport GET /api/PrepayReport/lowPurchaseSituation PrepayReport.LowPurchase
+PrepayReport GET /api/PrepayReport/consumptionStatistics PrepayReport.Consumption
+Energy Curve GET /api/RemoteReport/electricEnergyCurve RemoteReport.ElectricEnergyCurve
+Energy Curve GET /api/RemoteReport/electricEnergyCurveThree RemoteReport.ElectricEnergyCurveThree
+Energy Curve GET /api/RemoteReport/electricEnergyCurveCT RemoteReport.ElectricEnergyCurveCT
+Instant Values GET /api/RemoteReport/instantaneousValueCurve RemoteReport.InstantaneousValueCurve
+Instant Values GET /api/RemoteReport/instantaneousValueCurveThree RemoteReport.InstantaneousValueCurveThree
+Daily Report GET /api/RemoteReport/dailyData RemoteReport.DailyData
+Daily Report GET /api/RemoteReport/dailyDataThree RemoteReport.DailyDataThree
+Daily Report GET /api/RemoteReport/dailyDataCT RemoteReport.DailyDataCT
+Monthly Report GET /api/RemoteReport/monthlyData RemoteReport.MonthlyData
+Monthly Report GET /api/RemoteReport/monthlyDataThree RemoteReport.MonthlyDataThree
+Monthly Report GET /api/RemoteReport/monthlyDataCT RemoteReport.MonthlyDataCT
+Event Log GET /api/RemoteReport/eventNotification RemoteReport.EventNotification
+GPRS Status GET /api/RemoteReport/GPRSOnlineStatus RemoteReport.GPRSOnlineStatus
+Management GET/POST/PUT	/api/Management/gateway Management.Gateway
+Management GET/POST/PUT	/api/Management/customer Management.Customer
+Management GET/POST/PUT	/api/Management/tariff Management.Tariff
+Management GET/POST/PUT	/api/Management/account Management.Account
+Settings GET/POST/PUT	/api/Setting/station Setting.Station
+Settings GET/POST/PUT	/api/Setting/role Setting.Role
+Settings GET/POST/PUT	/api/Setting/user Setting.User
+
+-- 23 of 24 --
+
+ACOB ODYSSEY API Standard Operating Procedure
+CONFIDENTIAL ΓÇö Internal Use Only Version 1.0 | February 2026 Page 24
+13. DOCUMENT CONTROL
+Version Date Author Changes
+1.0 Feb 2026 Lead Software Architect Initial SOP release ΓÇö full API analysis from Postman collection a
+END OF DOCUMENT
+ACOB Odyssey API SOP v1.0 | Confidential | Internal Use Only
+
+-- 24 of 24 --
+
