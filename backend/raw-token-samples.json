@@ -1,0 +1,72 @@
+[
+  {
+    "site": "KYAKALE",
+    "record": {
+      "timestamp": "2026-02-22T16:45:41.000Z",
+      "amount": 3000,
+      "transactionKwh": 8.5,
+      "currency": "MMK",
+      "transactionType": "FULL_PAYMENT",
+      "transactionId": "transaction-4700530964757812032304484397697",
+      "customerId": "N/A",
+      "meterId": "47005309647",
+      "serialNumber": "N/A"
+    }
+  },
+  {
+    "site": "MUSHA",
+    "record": {
+      "timestamp": "2026-02-23T07:44:10.000Z",
+      "amount": 1000,
+      "transactionKwh": 2.8,
+      "currency": "MMK",
+      "transactionType": "FULL_PAYMENT",
+      "transactionId": "transaction-4700531332671498782087481441437",
+      "customerId": "N/A",
+      "meterId": "47005313326",
+      "serialNumber": "N/A"
+    }
+  },
+  {
+    "site": "UMAISHA",
+    "record": {
+      "timestamp": "2026-02-23T15:01:12.000Z",
+      "amount": 2000,
+      "transactionKwh": 5.7,
+      "currency": "MMK",
+      "transactionType": "FULL_PAYMENT",
+      "transactionId": "transaction-4700537763627294929018644870683",
+      "customerId": "N/A",
+      "meterId": "47005377636",
+      "serialNumber": "N/A"
+    }
+  },
+  {
+    "site": "TUNGA",
+    "record": {
+      "timestamp": "2026-02-23T12:34:11.000Z",
+      "amount": 1500,
+      "transactionKwh": 4.2,
+      "currency": "MMK",
+      "transactionType": "FULL_PAYMENT",
+      "transactionId": "transaction-4700531545346874018677179185079",
+      "customerId": "N/A",
+      "meterId": "47005315453",
+      "serialNumber": "N/A"
+    }
+  },
+  {
+    "site": "OGUFA",
+    "record": {
+      "timestamp": "2026-02-23T13:02:21.000Z",
+      "amount": 1100,
+      "transactionKwh": 3.1,
+      "currency": "MMK",
+      "transactionType": "FULL_PAYMENT",
+      "transactionId": "transaction-4700537695043735377437756014438",
+      "customerId": "N/A",
+      "meterId": "47005376950",
+      "serialNumber": "N/A"
+    }
+  }
+]

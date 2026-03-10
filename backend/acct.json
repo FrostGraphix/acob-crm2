@@ -1,0 +1,17 @@
+{
+  "customerId": "123",
+  "status": false,
+  "customerName": "test",
+  "communicationWay": 1,
+  "meterId": "47005346136",
+  "meterType": 0,
+  "protocolVersion": "2.2",
+  "tariffId": "123",
+  "ctRatio": null,
+  "stationId": "0001",
+  "createId": "0001",
+  "createDate": "2025-07-21 11:47:50",
+  "updateId": "0001",
+  "updateDate": "2025-07-21 11:47:50",
+  "remark": null
+}

@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-02-24T19:13:09.000Z",
+  "amount": 1000,
+  "transactionKwh": 2.8,
+  "currency": "MMK",
+  "transactionType": "FULL_PAYMENT",
+  "transactionId": "transaction-4700536753838032904137568940918",
+  "customerId": "N/A",
+  "meterId": "47005367538",
+  "serialNumber": "N/A"
+}

@@ -1,0 +1,47 @@
+// ============================================================
+// /frontend/src/App.tsx
+// ============================================================
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, ProtectedRoute } from './context/AuthContext';
+import { NotificationProvider } from './contexts/NotificationContext';
+import { Layout } from './components/Layout/Layout';
+import { LoginPage } from './pages/LoginPage';
+import { DashboardPage } from './pages/DashboardPage';
+import { TokensPage } from './pages/TokensPage';
+import { ManagementPage } from './pages/ManagementPage';
+import { ReportsPage } from './pages/ReportsPage';
+import { OperationsPage } from './pages/OperationsPage';
+import { SettingsPage } from './pages/SettingsPage';
+import { DiagnosticsPage } from './pages/DiagnosticsPage';
+import './index.css';
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes>
+          {/* Public - Login */}
+          <Route path="/login" element={<LoginPage />} />
+
+          {/* Protected - App shell */}
+          <Route path="/" element={
+            <ProtectedRoute>
+              <NotificationProvider>
+                <Layout />
+              </NotificationProvider>
+            </ProtectedRoute>
+          }>
+            <Route index element={<Navigate to="/dashboard" replace />} />
+            <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="tokens" element={<TokensPage />} />
+            <Route path="management" element={<ManagementPage />} />
+            <Route path="reports" element={<ReportsPage />} />
+            <Route path="operations" element={<OperationsPage />} />
+            <Route path="settings" element={<SettingsPage />} />
+            <Route path="diagnostics" element={<DiagnosticsPage />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
+  );
+}

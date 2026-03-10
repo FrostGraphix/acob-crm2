@@ -1,0 +1,249 @@
+[
+  {
+    "path": "/customer/read",
+    "status": 200,
+    "total": 0,
+    "recordCount": 0,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleKeys": [],
+    "hasData": false
+  },
+  {
+    "path": "/meter/read",
+    "status": 200,
+    "total": 0,
+    "recordCount": 0,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleKeys": [],
+    "hasData": false
+  },
+  {
+    "path": "/gateway/read",
+    "status": "ERR",
+    "total": 0,
+    "recordCount": 0,
+    "hasData": false,
+    "error": "timeout of 10000ms exceeded"
+  },
+  {
+    "path": "/tariff/read",
+    "status": 200,
+    "total": 0,
+    "recordCount": 0,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleKeys": [],
+    "hasData": false
+  },
+  {
+    "path": "/debt/read",
+    "status": 200,
+    "total": 0,
+    "recordCount": 0,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleKeys": [],
+    "hasData": false
+  },
+  {
+    "path": "/station/read",
+    "status": 200,
+    "total": 0,
+    "recordCount": 0,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleKeys": [],
+    "hasData": false
+  },
+  {
+    "path": "/role/read",
+    "status": 200,
+    "total": 0,
+    "recordCount": 0,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleKeys": [],
+    "hasData": false
+  },
+  {
+    "path": "/DailyData/read",
+    "status": 400,
+    "total": 0,
+    "recordCount": 0,
+    "hasData": false,
+    "error": "Request failed with status code 400"
+  },
+  {
+    "path": "/DailyData/readMore",
+    "status": 400,
+    "total": 0,
+    "recordCount": 0,
+    "hasData": false,
+    "error": "Request failed with status code 400"
+  },
+  {
+    "path": "/DailyData/readMonthly",
+    "status": 400,
+    "total": 0,
+    "recordCount": 0,
+    "hasData": false,
+    "error": "Request failed with status code 400"
+  },
+  {
+    "path": "/DailyDataMeter/read",
+    "status": 400,
+    "total": 0,
+    "recordCount": 0,
+    "hasData": false,
+    "error": "Request failed with status code 400"
+  },
+  {
+    "path": "/DailyDataMeter/readMore",
+    "status": 400,
+    "total": 0,
+    "recordCount": 0,
+    "hasData": false,
+    "error": "Request failed with status code 400"
+  },
+  {
+    "path": "/DailyDataMeter/readMonthly",
+    "status": 400,
+    "total": 0,
+    "recordCount": 0,
+    "hasData": false,
+    "error": "Request failed with status code 400"
+  },
+  {
+    "path": "/dashboard/readPanelGroup",
+    "status": 200,
+    "total": 0,
+    "recordCount": 0,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleKeys": [],
+    "hasData": false
+  },
+  {
+    "path": "/dashboard/readLineChart",
+    "status": 200,
+    "total": 0,
+    "recordCount": 0,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleKeys": [],
+    "hasData": false
+  },
+  {
+    "path": "/EventNotification/Read",
+    "status": 400,
+    "total": 0,
+    "recordCount": 0,
+    "hasData": false,
+    "error": "Request failed with status code 400"
+  },
+  {
+    "path": "/GPRSOnlineStatus/Read",
+    "status": 200,
+    "total": 0,
+    "recordCount": 0,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleKeys": [],
+    "hasData": false
+  },
+  {
+    "path": "/PrepayReport/LongNonpurchaseSituation",
+    "status": 400,
+    "total": 0,
+    "recordCount": 0,
+    "hasData": false,
+    "error": "Request failed with status code 400"
+  },
+  {
+    "path": "/PrepayReport/LowPurchaseSituation",
+    "status": 400,
+    "total": 0,
+    "recordCount": 0,
+    "hasData": false,
+    "error": "Request failed with status code 400"
+  },
+  {
+    "path": "/PrepayReport/ConsumptionStatistics",
+    "status": 400,
+    "total": 0,
+    "recordCount": 0,
+    "hasData": false,
+    "error": "Request failed with status code 400"
+  },
+  {
+    "path": "/Log/read",
+    "status": 200,
+    "total": 0,
+    "recordCount": 0,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleKeys": [],
+    "hasData": false
+  },
+  {
+    "path": "/item/read",
+    "status": 200,
+    "total": 0,
+    "recordCount": 0,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleKeys": [],
+    "hasData": false
+  },
+  {
+    "path": "/LoadProfile/DailyData",
+    "status": 400,
+    "total": 0,
+    "recordCount": 0,
+    "hasData": false,
+    "error": "Request failed with status code 400"
+  },
+  {
+    "path": "/LoadProfile/MonthlyData",
+    "status": 400,
+    "total": 0,
+    "recordCount": 0,
+    "hasData": false,
+    "error": "Request failed with status code 400"
+  }
+]

@@ -1,0 +1,448 @@
+[
+  {
+    "name": "Credit Token Records (readMore)",
+    "method": "GET",
+    "path": "/token/creditTokenRecord/readMore",
+    "status": "OK",
+    "recordCount": 191,
+    "topKeys": [
+      "payments",
+      "errors"
+    ],
+    "sampleRecord": {
+      "timestamp": "2026-03-03T12:01:29.000Z",
+      "amount": 1000,
+      "transactionKwh": 2.8,
+      "currency": "MMK",
+      "transactionType": "FULL_PAYMENT",
+      "transactionId": "transaction-4700534161645131271307225173262",
+      "customerId": "N/A",
+      "meterId": "47005341616",
+      "serialNumber": "N/A"
+    }
+  },
+  {
+    "name": "Credit Token Records (read POST)",
+    "method": "POST",
+    "path": "/token/creditTokenRecord/read",
+    "status": "OK",
+    "recordCount": 5,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleRecord": {
+      "receiptId": 3520,
+      "communicationWay": 1,
+      "customerId": "47005370615",
+      "customerName": "Musa  Ibrahim",
+      "meterId": "47005370615",
+      "meterType": 0,
+      "tariffId": "COMMERCIAL",
+      "totalUnit": 14.2,
+      "totalPaid": 5000,
+      "tax": 0,
+      "monthlyCharge": 0,
+      "totalDebt": 0,
+      "remainingDebt": 0,
+      "payDebt": 0,
+      "token": "3817 8421 9503 9409 8367",
+      "tokenFirst": "",
+      "tokenSecond": "",
+      "stationId": "TUNGA",
+      "createId": "TUNGA_VENDOR 1",
+      "createDate": "2026-03-03 16:28:57",
+      "updateId": "TUNGA_VENDOR 1",
+      "updateDate": "2026-03-03 16:28:57",
+      "remark": ""
+    }
+  },
+  {
+    "name": "Customer Read",
+    "method": "POST",
+    "path": "/customer/read",
+    "status": "OK",
+    "recordCount": 5,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleRecord": {
+      "customerId": "123",
+      "customerName": "test",
+      "type": 0,
+      "phone": null,
+      "address": null,
+      "certifiName": null,
+      "certifiNo": null,
+      "stationId": "0001",
+      "createId": "0001",
+      "createDate": "2025-07-21 09:25:57",
+      "updateId": "0001",
+      "updateDate": "2025-07-21 09:25:57",
+      "remark": null
+    }
+  },
+  {
+    "name": "Meter Read",
+    "method": "POST",
+    "path": "/meter/read",
+    "status": "OK",
+    "recordCount": 5,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleRecord": {
+      "meterId": "47000480929",
+      "type": 0,
+      "isThreePhase": 0,
+      "communicationWay": 1,
+      "protocolVersion": "2.2",
+      "lat": 0,
+      "lng": 0,
+      "baseYear": 2014,
+      "sgc": "250405",
+      "krn": 1,
+      "ken": 255,
+      "ti": 1,
+      "kt": 0,
+      "baseYearNew": 2014,
+      "sgcNew": "250405",
+      "krnNew": 1,
+      "kenNew": 255,
+      "tiNew": 1,
+      "ktNew": 0,
+      "status": false,
+      "stationId": "UMAISHA",
+      "createId": "0001",
+      "createDate": "2025-11-05 12:18:35",
+      "updateId": "0001",
+      "updateDate": "2025-11-06 03:15:29",
+      "remark": ""
+    }
+  },
+  {
+    "name": "Tariff Read",
+    "method": "POST",
+    "path": "/tariff/read",
+    "status": "OK",
+    "recordCount": 5,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleRecord": {
+      "tariffId": "123",
+      "tariffName": "test",
+      "price": "350",
+      "stationId": "0001",
+      "tax": 0,
+      "createId": "0001",
+      "createDate": "2025-07-21 09:26:19",
+      "updateId": "admin",
+      "updateDate": "2025-11-07 11:08:24",
+      "remark": null
+    }
+  },
+  {
+    "name": "Gateway Read",
+    "method": "POST",
+    "path": "/gateway/read",
+    "status": "OK",
+    "recordCount": 5,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleRecord": {
+      "gatewayId": "E4-38-19-FF-FE-19-E2-01",
+      "gatewayName": "OGUFA_COMMUNITY",
+      "successRate": 35.7,
+      "stationId": "admin",
+      "status": true,
+      "createId": "0001",
+      "createDate": "2025-07-17 11:46:07",
+      "updateId": "admin",
+      "updateDate": "2026-03-03 02:39:53",
+      "remark": null
+    }
+  },
+  {
+    "name": "Account Read",
+    "method": "POST",
+    "path": "/account/read",
+    "status": "OK",
+    "recordCount": 5,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleRecord": {
+      "customerId": "123",
+      "status": false,
+      "customerName": "test",
+      "communicationWay": 1,
+      "meterId": "47005346136",
+      "meterType": 0,
+      "protocolVersion": "2.2",
+      "tariffId": "123",
+      "ctRatio": null,
+      "stationId": "0001",
+      "createId": "0001",
+      "createDate": "2025-07-21 11:47:50",
+      "updateId": "0001",
+      "updateDate": "2025-07-21 11:47:50",
+      "remark": null
+    }
+  },
+  {
+    "name": "Long Non-Purchase",
+    "method": "POST",
+    "path": "/PrepayReport/LongNonpurchaseSituation",
+    "status": "ERROR",
+    "recordCount": 0,
+    "topKeys": [],
+    "error": "400: Request failed with status code 400"
+  },
+  {
+    "name": "Low Purchase",
+    "method": "POST",
+    "path": "/PrepayReport/LowPurchaseSituation",
+    "status": "ERROR",
+    "recordCount": 0,
+    "topKeys": [],
+    "error": "400: Request failed with status code 400"
+  },
+  {
+    "name": "Consumption Statistics",
+    "method": "POST",
+    "path": "/PrepayReport/ConsumptionStatistics",
+    "status": "ERROR",
+    "recordCount": 0,
+    "topKeys": [],
+    "error": "400: Request failed with status code 400"
+  },
+  {
+    "name": "Hourly Data (readHourly)",
+    "method": "GET",
+    "path": "/DailyDataMeter/readHourly",
+    "status": "EMPTY",
+    "recordCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "name": "Daily Data (read)",
+    "method": "POST",
+    "path": "/DailyDataMeter/read",
+    "status": "ERROR",
+    "recordCount": 0,
+    "topKeys": [],
+    "error": "400: Request failed with status code 400"
+  },
+  {
+    "name": "Event Notifications",
+    "method": "POST",
+    "path": "/EventNotification/Read",
+    "status": "ERROR",
+    "recordCount": 0,
+    "topKeys": [],
+    "error": "400: Request failed with status code 400"
+  },
+  {
+    "name": "GPRS Online Status",
+    "method": "POST",
+    "path": "/GPRSOnlineStatus/Read",
+    "status": "EMPTY",
+    "recordCount": 0,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ]
+  },
+  {
+    "name": "Dashboard Panel Group",
+    "method": "POST",
+    "path": "/dashboard/readPanelGroup",
+    "status": "EMPTY",
+    "recordCount": 0,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ]
+  },
+  {
+    "name": "Dashboard Line Chart",
+    "method": "POST",
+    "path": "/dashboard/readLineChart",
+    "status": "EMPTY",
+    "recordCount": 0,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ]
+  },
+  {
+    "name": "Instantaneous Values",
+    "method": "GET",
+    "path": "/RemoteReport/instantaneousValues",
+    "status": "ERROR",
+    "recordCount": 0,
+    "topKeys": [],
+    "error": "404: Request failed with status code 404"
+  },
+  {
+    "name": "Station Read",
+    "method": "POST",
+    "path": "/station/read",
+    "status": "OK",
+    "recordCount": 5,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleRecord": {
+      "stationId": "0001",
+      "name": "Station0001",
+      "createId": "System",
+      "createDate": "2022-10-28 09:54:47",
+      "updateId": "System",
+      "updateDate": "2022-10-28 09:54:47",
+      "remark": "System"
+    }
+  },
+  {
+    "name": "Role Read",
+    "method": "POST",
+    "path": "/role/read",
+    "status": "OK",
+    "recordCount": 4,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleRecord": {
+      "roleId": "0001",
+      "name": "role0001",
+      "content": "Token,Token.CreditToken,Token.ClearTamperToken,Token.ClearCreditToken,Token.SetMaximumPowerLimitToken,Token.SetMaximumOverdraftToken,Token.SetMaximumPhasePowerUnbalanceLimitToken,Token.MeterTestToken,Token.UpdateMeterKey,Token.ChangeMeterKeyToken,TokenRecord,TokenRecord.CreditTokenRecord,TokenRecord.CreditTokenCancelRecord,TokenRecord.CancelCreditTokenRecord,TokenRecord.ClearTamperTokenRecord,TokenRecord.ClearCreditTokenRecord,TokenRecord.SetMaximumPowerLimitTokenRecord,TokenRecord.SetMaximumOverdraftTokenRecord,TokenRecord.SetMaximumPhasePowerUnbalanceLimitTokenRecord,TokenRecord.ChangeMeterKeyTokenRecord,RemoteMeterTask,RemoteMeterTask.CreateReadingTask,RemoteMeterTask.CreateSettingTask,RemoteMeterTask.CreateControlTask,RemoteMeterTask.CreateTokenTask,RemoteMeterTask.CreateTransparentForwardingTask,RemoteMeterTask.CreateUpdateFirmwareTask,RemoteMeterTaskRecord,RemoteMeterTaskRecord.GetReadingTask+RemoteMeterTaskRecord.UpdateReadingTask,RemoteMeterTaskRecord.GetSettingTask+RemoteMeterTaskRecord.UpdateSettingTask,RemoteMeterTaskRecord.GetControlTask+RemoteMeterTaskRecord.UpdateControlTask,RemoteMeterTaskRecord.GetTokenTask+RemoteMeterTaskRecord.UpdateTokenTask,RemoteMeterTask.GetTransparentForwardingTask,RemoteMeterTaskRecord.CreateUpdateFirmwareTask,PrepayReport.LongNonpurchaseSituation,PrepayReport.LowPurchaseSituation,PrepayReport.ConsumptionStatistics,AutomaticMeterReading.DailyDataMeter,Management,Management.Gateway,Management.Meter,Management.Customer,Management.Tariff,Management.Debt,Management.Account,Setting,Setting.Station,Setting.Role,Setting.User,Setting.Log,Setting.Item,Setting.Image",
+      "createId": "0001",
+      "createDate": "2022-10-28 09:54:47",
+      "updateId": "0001",
+      "updateDate": "2025-06-19 16:02:05",
+      "remark": "System"
+    }
+  },
+  {
+    "name": "User Read (POST /user/read)",
+    "method": "POST",
+    "path": "/user/read",
+    "status": "OK",
+    "recordCount": 5,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleRecord": {
+      "userId": "0001",
+      "quota": 100,
+      "remainingQuota": 81.6,
+      "totalQuota": 115,
+      "nickName": "",
+      "fullName": "",
+      "email": "",
+      "phone": "",
+      "address": "",
+      "status": true,
+      "roleId": "0001",
+      "roleName": "role0001",
+      "roleContent": "Token,Token.CreditToken,Token.ClearTamperToken,Token.ClearCreditToken,Token.SetMaximumPowerLimitToken,Token.SetMaximumOverdraftToken,Token.SetMaximumPhasePowerUnbalanceLimitToken,Token.MeterTestToken,Token.UpdateMeterKey,Token.ChangeMeterKeyToken,TokenRecord,TokenRecord.CreditTokenRecord,TokenRecord.CreditTokenCancelRecord,TokenRecord.CancelCreditTokenRecord,TokenRecord.ClearTamperTokenRecord,TokenRecord.ClearCreditTokenRecord,TokenRecord.SetMaximumPowerLimitTokenRecord,TokenRecord.SetMaximumOverdraftTokenRecord,TokenRecord.SetMaximumPhasePowerUnbalanceLimitTokenRecord,TokenRecord.ChangeMeterKeyTokenRecord,RemoteMeterTask,RemoteMeterTask.CreateReadingTask,RemoteMeterTask.CreateSettingTask,RemoteMeterTask.CreateControlTask,RemoteMeterTask.CreateTokenTask,RemoteMeterTask.CreateTransparentForwardingTask,RemoteMeterTask.CreateUpdateFirmwareTask,RemoteMeterTaskRecord,RemoteMeterTaskRecord.GetReadingTask+RemoteMeterTaskRecord.UpdateReadingTask,RemoteMeterTaskRecord.GetSettingTask+RemoteMeterTaskRecord.UpdateSettingTask,RemoteMeterTaskRecord.GetControlTask+RemoteMeterTaskRecord.UpdateControlTask,RemoteMeterTaskRecord.GetTokenTask+RemoteMeterTaskRecord.UpdateTokenTask,RemoteMeterTask.GetTransparentForwardingTask,RemoteMeterTaskRecord.CreateUpdateFirmwareTask,PrepayReport.LongNonpurchaseSituation,PrepayReport.LowPurchaseSituation,PrepayReport.ConsumptionStatistics,AutomaticMeterReading.DailyDataMeter,Management,Management.Gateway,Management.Meter,Management.Customer,Management.Tariff,Management.Debt,Management.Account,Setting,Setting.Station,Setting.Role,Setting.User,Setting.Log,Setting.Item,Setting.Image",
+      "stationId": "0001",
+      "stationName": "Station0001",
+      "company": null,
+      "createId": "System",
+      "createDate": "2022-10-31 09:54:47",
+      "updateId": "0001",
+      "updateDate": "2026-01-07 04:41:09",
+      "remark": "System"
+    }
+  },
+  {
+    "name": "User Read (GET /Setting/user)",
+    "method": "GET",
+    "path": "/Setting/user",
+    "status": "ERROR",
+    "recordCount": 0,
+    "topKeys": [],
+    "error": "404: Request failed with status code 404"
+  },
+  {
+    "name": "Log Read",
+    "method": "POST",
+    "path": "/log/read",
+    "status": "OK",
+    "recordCount": 5,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleRecord": {
+      "logId": 8759,
+      "title": "Login",
+      "action": "Login",
+      "contentBefore": "{\"UserId\":\"TUNGA_VENDOR 2\",\"Password\":\"*\"}",
+      "contentAfter": "",
+      "ipAddress": "127.0.0.1",
+      "stationId": "TUNGA",
+      "createId": "TUNGA_VENDOR 2",
+      "createDate": "2026-03-03 16:30:29",
+      "updateId": "TUNGA_VENDOR 2",
+      "updateDate": "2026-03-03 16:30:29",
+      "remark": ""
+    }
+  },
+  {
+    "name": "Log Read (capital L)",
+    "method": "POST",
+    "path": "/Log/read",
+    "status": "OK",
+    "recordCount": 5,
+    "topKeys": [
+      "code",
+      "reason",
+      "result"
+    ],
+    "sampleRecord": {
+      "logId": 8759,
+      "title": "Login",
+      "action": "Login",
+      "contentBefore": "{\"UserId\":\"TUNGA_VENDOR 2\",\"Password\":\"*\"}",
+      "contentAfter": "",
+      "ipAddress": "127.0.0.1",
+      "stationId": "TUNGA",
+      "createId": "TUNGA_VENDOR 2",
+      "createDate": "2026-03-03 16:30:29",
+      "updateId": "TUNGA_VENDOR 2",
+      "updateDate": "2026-03-03 16:30:29",
+      "remark": ""
+    }
+  }
+]

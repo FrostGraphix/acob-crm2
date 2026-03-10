@@ -1,0 +1,18 @@
+﻿src/components/Management/GatewayManager.tsx(206,44): error TS2322: Type '{ children: Element; label: string; required: true; className: string; }' is not assignable to type 'IntrinsicAttributes & FieldProps'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & FieldProps'.
+src/components/Management/GatewayManager.tsx(209,32): error TS2322: Type '{ children: Element; label: string; className: string; }' is not assignable to type 'IntrinsicAttributes & FieldProps'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & FieldProps'.
+src/pages/LoginPage.tsx(96,17): error TS2322: Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; staggerChildren: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'visible' is incompatible with index signature.
+    Type '{ opacity: number; y: number; transition: { duration: number; staggerChildren: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '{ opacity: number; y: number; transition: { duration: number; staggerChildren: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+        Type '{ opacity: number; y: number; transition: { duration: number; staggerChildren: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+          Types of property 'transition' are incompatible.
+            Type '{ duration: number; staggerChildren: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+              Type '{ duration: number; staggerChildren: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                Type '{ duration: number; staggerChildren: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                  Types of property 'ease' are incompatible.
+                    Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                      Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                        Type 'number[]' is not assignable to type 'Easing[]'.
+                          Type 'number' is not assignable to type 'Easing'.

@@ -1,0 +1,277 @@
+[
+  {
+    "name": "Credit Token Records",
+    "path": "/token/creditTokenRecord/readMore",
+    "method": "GET",
+    "status": 200,
+    "recordCount": 166,
+    "sampleKeys": [
+      "timestamp",
+      "amount",
+      "transactionKwh",
+      "currency",
+      "transactionType",
+      "transactionId",
+      "customerId",
+      "meterId",
+      "serialNumber"
+    ]
+  },
+  {
+    "name": "Clear Tamper Token Records",
+    "path": "/token/clearTamperTokenRecord/readMore",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Clear Credit Token Records",
+    "path": "/token/clearCreditTokenRecord/readMore",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "MaxPower Limit Token Records",
+    "path": "/token/setMaximumPowerLimitTokenRecord/readMore",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Change Meter Key Token Records",
+    "path": "/token/changeMeterKeyTokenRecord/readMore",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Hourly Meter Data",
+    "path": "/DailyDataMeter/readHourly",
+    "method": "GET",
+    "status": 200,
+    "recordCount": 0,
+    "sampleKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "name": "Daily Data",
+    "path": "/DailyDataMeter/readDaily",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Monthly Data",
+    "path": "/DailyDataMeter/readMonthly",
+    "method": "GET",
+    "status": 405,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 405"
+  },
+  {
+    "name": "GPRS Online Status",
+    "path": "/RemoteReport/GPRSOnlineStatus",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Event Notification",
+    "path": "/RemoteReport/eventNotification",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Electric Energy Curve",
+    "path": "/RemoteReport/electricEnergyCurve",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Instantaneous Value Curve",
+    "path": "/RemoteReport/instantaneousValueCurve",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Remote Daily Data",
+    "path": "/RemoteReport/dailyData",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Remote Monthly Data",
+    "path": "/RemoteReport/monthlyData",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Long Non-Purchase",
+    "path": "/PrepayReport/longNonpurchaseSituation",
+    "method": "POST",
+    "status": 400,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 400"
+  },
+  {
+    "name": "Low Purchase",
+    "path": "/PrepayReport/lowPurchaseSituation",
+    "method": "POST",
+    "status": 400,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 400"
+  },
+  {
+    "name": "Consumption Statistics",
+    "path": "/PrepayReport/consumptionStatistics",
+    "method": "GET",
+    "status": 405,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 405"
+  },
+  {
+    "name": "Management: Meters",
+    "path": "/Management/meter",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Management: Customers",
+    "path": "/Management/customer",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Management: Gateways",
+    "path": "/Management/gateway",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Management: Tariffs",
+    "path": "/Management/tariff",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Management: Debts",
+    "path": "/Management/debt",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Management: Accounts",
+    "path": "/Management/account",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Setting: Stations",
+    "path": "/Setting/station",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Setting: Roles",
+    "path": "/Setting/role",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Setting: Users",
+    "path": "/Setting/user",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Setting: Logs",
+    "path": "/Setting/log",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Setting: Items",
+    "path": "/Setting/item",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  },
+  {
+    "name": "Remote Task Records (Reading)",
+    "path": "/RemoteMeterTaskRecord/getReadingTask",
+    "method": "GET",
+    "status": 404,
+    "recordCount": 0,
+    "sampleKeys": [],
+    "error": "Request failed with status code 404"
+  }
+]

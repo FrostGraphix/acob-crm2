@@ -1,0 +1,13 @@
+﻿src/components/Layout/Layout.tsx(113,16): error TS2304: Cannot find name 'SITES'.
+src/components/Layout/Layout.tsx(113,26): error TS7006: Parameter 'site' implicitly has an 'any' type.
+src/pages/DashboardPage.tsx(108,83): error TS2345: Argument of type '"KYAKALE" | "MUSHA" | "UMAISHA" | "TUNGA" | "OGUFA" | "ALL"' is not assignable to parameter of type '"KYAKALE" | "MUSHA" | "UMAISHA" | "TUNGA" | "OGUFA" | undefined'.
+  Type '"ALL"' is not assignable to type '"KYAKALE" | "MUSHA" | "UMAISHA" | "TUNGA" | "OGUFA" | undefined'.
+src/pages/DashboardPage.tsx(113,34): error TS2339: Property 'summary' does not exist on type 'DashboardData'.
+src/pages/DashboardPage.tsx(215,48): error TS2322: Type '{ metrics: FlowMetrics | undefined; siteId: "KYAKALE" | "MUSHA" | "UMAISHA" | "TUNGA" | "OGUFA" | "ALL"; }' is not assignable to type 'IntrinsicAttributes & FlowGraphProps'.
+  Property 'siteId' does not exist on type 'IntrinsicAttributes & FlowGraphProps'.
+src/pages/DashboardPage.tsx(279,35): error TS2322: Type '{ siteId: "KYAKALE" | "MUSHA" | "UMAISHA" | "TUNGA" | "OGUFA" | undefined; }' is not assignable to type 'IntrinsicAttributes & { meterSN?: string | undefined; }'.
+  Property 'siteId' does not exist on type 'IntrinsicAttributes & { meterSN?: string | undefined; }'.
+src/pages/ReportsPage.tsx(341,26): error TS2339: Property 'format' does not exist on type '{ label: string; value: number; icon: LucideIcon; color: string; } | { label: string; value: number; format: (v: number) => string; icon: LucideIcon; color: string; }'.
+  Property 'format' does not exist on type '{ label: string; value: number; icon: LucideIcon; color: string; }'.
+src/pages/ReportsPage.tsx(341,39): error TS2339: Property 'format' does not exist on type '{ label: string; value: number; icon: LucideIcon; color: string; } | { label: string; value: number; format: (v: number) => string; icon: LucideIcon; color: string; }'.
+  Property 'format' does not exist on type '{ label: string; value: number; icon: LucideIcon; color: string; }'.

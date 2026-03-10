@@ -1,0 +1,15 @@
+{
+  "customerId": "123",
+  "customerName": "test",
+  "type": 0,
+  "phone": null,
+  "address": null,
+  "certifiName": null,
+  "certifiNo": null,
+  "stationId": "0001",
+  "createId": "0001",
+  "createDate": "2025-07-21 09:25:57",
+  "updateId": "0001",
+  "updateDate": "2025-07-21 09:25:57",
+  "remark": null
+}

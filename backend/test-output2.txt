@@ -1,0 +1,10 @@
+﻿Testing pageLimit=500
+pageLimit=500 -> returned: 20
+Testing limit=500
+limit=500 -> returned: 20
+Testing PAGE_LIMIT=500
+PAGE_LIMIT=500 -> returned: 20
+Testing pageSize=500
+pageSize=500 -> returned: 500
+Testing length=500, start=0
+length=500 -> returned: 20

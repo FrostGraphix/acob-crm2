@@ -1,0 +1,352 @@
+[
+  {
+    "site": "KYAKALE",
+    "range": "Last 7 days",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "KYAKALE",
+    "range": "Last 30 days",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "KYAKALE",
+    "range": "Last 90 days",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "KYAKALE",
+    "range": "Full year 2025",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "KYAKALE",
+    "range": "Full year 2026",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "MUSHA",
+    "range": "Last 7 days",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "MUSHA",
+    "range": "Last 30 days",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "MUSHA",
+    "range": "Last 90 days",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "MUSHA",
+    "range": "Full year 2025",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "MUSHA",
+    "range": "Full year 2026",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "UMAISHA",
+    "range": "Last 7 days",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "UMAISHA",
+    "range": "Last 30 days",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "UMAISHA",
+    "range": "Last 90 days",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "UMAISHA",
+    "range": "Full year 2025",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "UMAISHA",
+    "range": "Full year 2026",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "TUNGA",
+    "range": "Last 7 days",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "TUNGA",
+    "range": "Last 30 days",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "TUNGA",
+    "range": "Last 90 days",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "TUNGA",
+    "range": "Full year 2025",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "TUNGA",
+    "range": "Full year 2026",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "OGUFA",
+    "range": "Last 7 days",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "OGUFA",
+    "range": "Last 30 days",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "OGUFA",
+    "range": "Last 90 days",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "OGUFA",
+    "range": "Full year 2025",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  },
+  {
+    "site": "OGUFA",
+    "range": "Full year 2026",
+    "status": 200,
+    "total": 0,
+    "readingCount": 0,
+    "topKeys": [
+      "total",
+      "offset",
+      "pageLimit",
+      "readings",
+      "errors"
+    ]
+  }
+]
